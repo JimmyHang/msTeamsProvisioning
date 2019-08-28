@@ -114,4 +114,6 @@ $itemupdate = Set-PnPListItem -List $SPList -Identity $SPListItemID -Values @{"T
 
 Write-Output "All done.."
 
+Disconnect-PnPOnline
+Disconnect-MicrosoftTeams
 
