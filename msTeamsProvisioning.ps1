@@ -37,7 +37,6 @@ $teamsName = $Input.TeamsName
 $teamsAlias  = $teamsName -replace '[^a_-zA-Z0-9]', ''
 
 Function Update-site{
-Param( 
 
     #add channel folders to SharePoint using PnP PowerShell
     $spoconn = Connect-PnPOnline –Url https://jh365dev.sharepoint.com/sites/$teamsAlias –Credentials (Get-AutomationPSCredential -Name 'YourAutomationAccount') -ReturnConnection
