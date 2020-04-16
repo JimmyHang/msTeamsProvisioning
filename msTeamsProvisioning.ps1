@@ -40,16 +40,16 @@ Function Update-site{
 
     #add channel folders to SharePoint using PnP PowerShell
     $spoconn = Connect-PnPOnline –Url https://jh365dev.sharepoint.com/sites/$teamsAlias –Credentials (Get-AutomationPSCredential -Name 'YourAutomationAccount') -ReturnConnection
-    Add-PnPFolder -Name "General" -Folder "/Shared Documents"
-    Add-PnPFolder -Name "01 Planning" -Folder "/Shared Documents"
-    Add-PnPFolder -Name "02 Execution" -Folder "/Shared Documents"
-    Add-PnPFolder -Name "03 Final" -Folder "/Shared Documents"
+    $newfolder = Add-PnPFolder -Name "General" -Folder "/Shared Documents"
+    $newfolder = Add-PnPFolder -Name "01 Planning" -Folder "/Shared Documents"
+    $newfolder = Add-PnPFolder -Name "02 Execution" -Folder "/Shared Documents"
+    $newfolder = Add-PnPFolder -Name "03 Final" -Folder "/Shared Documents"
 
     #add to hubsite if needed
-    Add-PnPHubSiteAssociation -Site https://jh365dev.sharepoint.com/sites/$teamsAlias -HubSite "yourhubsiteURL"
+    $hubassosiation = Add-PnPHubSiteAssociation -Site https://jh365dev.sharepoint.com/sites/$teamsAlias -HubSite "yourhubsiteURL"
 
     #copy files to new Team channel if needed
-    Copy-PnPFile -SourceUrl /sites/templates/Shared%20Documents/Templates.docx -TargetUrl /sites/$teamsAlias/Shared%20Documents/General -Force -Confirm
+    $filecopy = Copy-PnPFile -SourceUrl /sites/templates/Shared%20Documents/Templates.docx -TargetUrl /sites/$teamsAlias/Shared%20Documents/General -Force -Confirm
     
 } #End Update-site 
 
